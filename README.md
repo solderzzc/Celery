@@ -29,3 +29,8 @@ celery flower -A tasks
 ```
 python test.py
 ```
+
+### Result on Dashboard
+
+http://localhost:5555/dashboard
+
