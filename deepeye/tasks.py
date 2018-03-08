@@ -35,11 +35,12 @@ class FaceDetectorTask(Task):
 
 @deepeye.task(base=FaceDetectorTask)
 def detect(x, y):
+    sleep(10)  # Simulate work
     return x + y
 
 @deepeye.task
 def extract(x, y):
-    sleep(30)  # Simulate work
+    sleep(3000)  # Simulate work
     return x -  y
 
 @deepeye.task

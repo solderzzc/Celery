@@ -9,6 +9,14 @@ resp = requests.post(url, data=json.dumps(args))
 reply = resp.json()
 print reply
 
+print 'Test block call'
+url = '{}/apply/deepeye.tasks.detect'.format(task_api)
+print(url)
+resp = requests.post(url, data=json.dumps(args))
+reply = resp.json()
+print reply
+
+
 url = '{}/queues/length'.format(api_root)
 print(url)
 resp = requests.get(url)
