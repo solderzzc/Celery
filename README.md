@@ -15,6 +15,11 @@
 ```
 docker run -d --net=host arm64v8/rabbitmq:3
 ```
+### Enable RabbitMQ Plugin in rabbitmy runtime (in docker for such case)
+```
+rabbitmq-plugins enable rabbitmq_management
+service rabbitmq-server restart
+```
 
 ### Modify IP
 
