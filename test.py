@@ -8,3 +8,8 @@ print(url)
 resp = requests.post(url, data=json.dumps(args))
 reply = resp.json()
 print reply
+
+url = '{}/queues/length'.format(api_root)
+print(url)
+resp = requests.get(url)
+print 'Queues length is {}'.format(resp.json())
