@@ -3,7 +3,7 @@ import requests, json
 api_root = 'http://localhost:5555/api'
 task_api = '{}/task'.format(api_root)
 args = {'args': [1, 2]}
-url = '{}/async-apply/tasks.add'.format(task_api)
+url = '{}/async-apply/deepeye.tasks.detect'.format(task_api)
 print(url)
 resp = requests.post(url, data=json.dumps(args))
 reply = resp.json()

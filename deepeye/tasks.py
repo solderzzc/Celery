@@ -12,14 +12,10 @@ import os
 
 asynpool.PROC_ALIVE_TIMEOUT = 60.0 #set this long enough
 
-workai = Celery()
-workai.config_from_object({
-    'name':'workai',
-    'BROKER_URL': 'amqp://10.5.52.110',
-    'CELERY_RESULT_BACKEND': 'rpc://',
-    'CELERYD_POOL_RESTARTS': True,  # Required for /worker/pool/restart API
-})
-workai.count = 1
+deepeye = Celery()
+
+
+deepeye.count = 1
 def getQueueName():
     return os.environ['WORKER_TYPE']
 @worker_process_init.connect()
@@ -37,11 +33,16 @@ class FaceDetectorTask(Task):
     def detector(self):
         return self._model
 
-@workai.task(base=FaceDetectorTask)
-def add(x, y):
+@deepeye.task(base=FaceDetectorTask)
+def detect(x, y):
     return x + y
 
-@workai.task
-def sub(x, y):
+@deepeye.task
+def extract(x, y):
+    sleep(30)  # Simulate work
+    return x -  y
+
+@deepeye.task
+def fullimage(x, y):
     sleep(30)  # Simulate work
     return x -  y
