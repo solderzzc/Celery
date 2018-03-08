@@ -1,24 +1,17 @@
-
-## 最新改动，支持判断Worker类型
-`WORKER_TYPE=detect celery worker --loglevel INFO -A proj -E -n detect -c 2 -Q detect   `
-
-`WORKER_TYPE=embedding celery worker --loglevel INFO -A proj -E -n embedding -c 2 -Q embedding  `
-
-`WORKER_TYPE=nopriority celery worker --loglevel INFO -A proj -E -n nopriority -c 2 -Q nopriority  `
-
-
-
-## 目录变更前的执行方法
-
 ### Run RabbitMQ
 
 ```
 docker run -d --net=host arm64v8/rabbitmq:3
 ```
+### Enable RabbitMQ Plugin in rabbitmy runtime (in docker for such case)
+```
+rabbitmq-plugins enable rabbitmq_management
+service rabbitmq-server restart
+```
 
 ### Modify IP
 
-https://github.com/solderzzc/Celery/blob/master/tasks.py#L6
+https://github.com/solderzzc/Celery/blob/master/celeryconfig.py
 
 ### Install flower Celery
 
@@ -29,12 +22,17 @@ pip install flower celery
 ### Run Test
 
 ```
-celery worker --loglevel INFO -A tasks -E -c 5
+WORKER_TYPE=detect celery worker --loglevel INFO -A proj -E -n detect -c 2 -Q detect
+
+WORKER_TYPE=embedding celery worker --loglevel INFO -A proj -E -n embedding -c 2 -Q embedding
+
+WORKER_TYPE=nopriority celery worker --loglevel INFO -A proj -E -n nopriority -c 2 -Q nopriority
+
 ```
 Open New terminal
 
 ```
-celery flower -A tasks
+celery flower
 ```
 
 ```
